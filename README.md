@@ -1,5 +1,5 @@
 # template-screenshot_share_upload-arfoundation-unity
-I start the unity project using AR template on Unity Hub
+I started the unity project using AR template on Unity Hub
 
 ## In this package have a scene example and all code for:
 
