@@ -12,6 +12,9 @@ I started the unity project using AR template on Unity Hub
 - JSON .NET For Unity (https://assetstore.unity.com/packages/tools/input-management/json-net-for-unity-11347#publisher)
 - NatShare - Mobile Sharing API (https://assetstore.unity.com/packages/tools/integration/natshare-mobile-sharing-api-117705)
 
+## Video demo
+https://github.com/ismaelash/template-screenshot_share_upload-arfoundation-unity/blob/main/demo_screenshot_share_upload_video.mp4
+
 ## video about project
 https://youtube.com/ismaelnascimentoash
 
