@@ -27,7 +27,7 @@ namespace IsmaelNascimento
 
         [SerializeField] private List<GameObject> gameObjectsForDisable;
         public RawImage previewRawImage;
-        public Texture2D screenshotTexture2D;
+        private Texture2D screenshotTexture2D;
 
         #endregion
 
@@ -42,6 +42,12 @@ namespace IsmaelNascimento
 
         #region PUBLIC_METHODS
 
+        public void OnButtonScreenshotAndSaveClicked()
+        {
+            screenshotTexture2D = null;
+            StartCoroutine(ScreenshotSystem_Coroutine(AfterScreenshot_Callback));
+        }
+
         public void OnButtonShareScreenshotClicked()
         {
             if (Application.isMobilePlatform)
@@ -52,22 +58,15 @@ namespace IsmaelNascimento
             }
         }
 
-        [ContextMenu("OnButtonScreenshotAndSaveClicked")]
-        public void OnButtonScreenshotAndSaveClicked()
-        {
-            screenshotTexture2D = null;
-            StartCoroutine(ScreenshotSystem_Coroutine(AfterScreenshot_Callback));
-        }
-
         public string GetScreenshotTexture2DToBase64()
         {
-            Texture2D tex = new Texture2D(Screen.width, Screen.height);
+            Texture2D texture2D = new Texture2D(Screen.width, Screen.height);
             string directory = Application.isEditor ? Directory.GetCurrentDirectory() : Application.persistentDataPath;
             byte[] image = File.ReadAllBytes($"{directory}/{GetNameFile()}");
-            tex.LoadImage(image);
-            tex.Apply();
+            texture2D.LoadImage(image);
+            texture2D.Apply();
 
-            byte[] imageArray = tex.EncodeToPNG();
+            byte[] imageArray = texture2D.EncodeToPNG();
             string base64 = Convert.ToBase64String(imageArray);
             return base64;
         }
@@ -135,7 +134,7 @@ namespace IsmaelNascimento
 
         private IEnumerator OpenPreview_Coroutine()
         {
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(.2f);
             previewRawImage.gameObject.SetActive(true);
             previewRawImage.texture = screenshotTexture2D;
         }

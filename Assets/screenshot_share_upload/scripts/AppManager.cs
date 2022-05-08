@@ -21,7 +21,6 @@ namespace IsmaelNascimento
         }
 
         [Tooltip("directory/filename.extesion")]
-        private string pathFileOnBucket;
         [SerializeField] private GameObject uploadingPanel;
 
         #endregion
@@ -30,14 +29,11 @@ namespace IsmaelNascimento
         {
             Debug.Log("Start upload");
             uploadingPanel.SetActive(true);
-            string date = DateTime.Now.ToString("dd-MM-yyyy");
-            string hour = DateTime.Now.ToString("hh:mm");
-            pathFileOnBucket = GetNameFile(2);
-            Debug.Log($"pathFileOnBucket: {pathFileOnBucket}");
+            Debug.Log($"pathFileOnBucket: {GetNameFile()}");
 
             RequestUploadModel requestUploadModel = new RequestUploadModel
             {
-                pathFileOnBucket = pathFileOnBucket,
+                pathFileOnBucket = GetNameFile(),
                 base64 = ScreenshotManager.Instance.GetScreenshotTexture2DToBase64()
             };
 
@@ -50,6 +46,8 @@ namespace IsmaelNascimento
                 if (!string.IsNullOrEmpty(error))
                 {
                     Debug.LogError(error);
+                    uploadingPanel.SetActive(false);
+                    return;
                 }
 
                 uploadingPanel.SetActive(false);
@@ -63,11 +61,11 @@ namespace IsmaelNascimento
             return PlayerPrefs.GetInt("photo-count");
         }
 
-        private string GetNameFile(int odsNumber)
+        private string GetNameFile()
         {
             string date = DateTime.Now.ToString("dd-MM-yyyy");
             string hour = DateTime.Now.ToString("hh:mm");
-            return $"ODS-{odsNumber}-foto-{GetCount()}-{date}-{hour}.png";
+            return $"ODS-{Constants.ODS_NUMBER}-photo-{GetCount()}-{date}-{hour}.png";
         }
     }
 }
