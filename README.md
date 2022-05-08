@@ -22,4 +22,5 @@ https://github.com/ismaelash/template-screenshot_share_upload-arfoundation-unity
 https://youtube.com/ismaelnascimentoash
 
 ## Contact/Support
-contato@ismaelnascimento.com
+- contato@ismaelnascimento.com
+- https://linkedin.com/in/ismaelash
